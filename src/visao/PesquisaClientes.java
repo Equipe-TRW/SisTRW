@@ -5,17 +5,85 @@
  */
 package visao;
 
-/**
- *
- * @author informatica01
- */
+//IMPORTANDO CLASSE DE CONEXÃO
+import db.Conexao;
+//IMPORTANDO CLASSE MODELO TABELA
+import modelo.modeloTabela;
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+
 public class PesquisaClientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Pesquisa
-     */
+    //CRIANDO UM OBJETO DA MINHA CLASSE CONEXÃO
+    Conexao conectaCli=new Conexao();
+    
     public PesquisaClientes() {
         initComponents();
+        //ABRENDIO CONEXÃO
+        conectaCli.conexao();
+        //CHAMANDO O METODO PREENCHE TABELA E PASSANDO A STRING SQL DESEJADA
+        preenchetablePesqCli("select * from tbl_clientes order by nome_cli");
+    }
+    
+    //METODO RESPONSAVEL POR CARREGAR OS DADOS DA TABELA CLIENTES DO BD NA JTABLE DO PROJETO
+    public void preenchetablePesqCli(String sql){
+        ArrayList dados=new ArrayList();
+            //VETOR COLUNAS COM OS CABEÇALHOS
+            String[] colunas=new String[]{"ID","Nome","Data de Nascimento","Genero","Fone 1","Fone 2","Email","RG","CPF","Estado","Cidade","Bairro","Endereço","Numero"};
+            //ABRINDO CONEXÃO
+            conectaCli.conexao();
+            //CRIANDO UMA CONSULTA SQL
+            conectaCli.executaSQL(sql);
+            try {
+                //SETANDO O RESULTSET DA CONSULTA NA PRIMEIRA LINHA
+                conectaCli.rs.first();
+                //LOOP QUE VAI ALIMENTAR MEU VETOR DE OBJETO COM TODOS OS REGISTROS DA STRING SQL PASSADO ACIMA
+                do{
+                    dados.add(new Object[]{conectaCli.rs.getInt("id_cli"),conectaCli.rs.getString("nome_cli"),conectaCli.rs.getDate("data_nasc"),conectaCli.rs.getString("genero"),conectaCli.rs.getString("fone1_cli"),conectaCli.rs.getString("fone2_cli"),conectaCli.rs.getString("email_cli"),conectaCli.rs.getString("rg_cli"),conectaCli.rs.getString("cpf_cli"),conectaCli.rs.getString("estado_cli"),conectaCli.rs.getString("cidade_cli"),conectaCli.rs.getString("bairro_cli"),conectaCli.rs.getString("endereco_cli"),conectaCli.rs.getInt("numero_cli")});                      
+                //ENQUANTO EXISTIR REGISTRO PULE PARA A PROXIMA LINHA
+                }while(conectaCli.rs.next());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao preencher Tabela!"+e);
+            }
+            conectaCli.desconcta();
+            modeloTabela tabela=new modeloTabela(dados, colunas);
+            
+            tablePesqCli.setModel(tabela);
+            tablePesqCli.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tablePesqCli.getColumnModel().getColumn(0).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablePesqCli.getColumnModel().getColumn(1).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(2).setPreferredWidth(110);
+            tablePesqCli.getColumnModel().getColumn(2).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(3).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(4).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(5).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(5).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(6).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(6).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(7).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(7).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(8).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(8).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(9).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(9).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(10).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(10).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(11).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(11).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(12).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(12).setResizable(true);
+            tablePesqCli.getColumnModel().getColumn(13).setPreferredWidth(100);
+            tablePesqCli.getColumnModel().getColumn(13).setResizable(true);
+            
+            
+            tablePesqCli.getTableHeader().setReorderingAllowed(false);
+            tablePesqCli.setAutoResizeMode(tablePesqCli.AUTO_RESIZE_OFF);
+            tablePesqCli.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);   
     }
 
     /**

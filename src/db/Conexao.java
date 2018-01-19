@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Conexao {
    public Statement stm;
    public ResultSet rs;
-  
+   
    private String driver="com.mysql.jdbc.Driver";
    private String caminho="jdbc:mysql://localhost:3306/dbtrw";
    private String usuario="root";
