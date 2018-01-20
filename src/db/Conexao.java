@@ -18,7 +18,7 @@ public class Conexao {
    private String driver="com.mysql.jdbc.Driver";
    private String caminho="jdbc:mysql://localhost:3306/dbtrw";
    private String usuario="root";
-   private String senha="";
+   private String senha="wilb12m02";
    public Connection conn;
 
     public void conexao(){
