@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Jan-2018 às 01:08
+-- Generation Time: 23-Jan-2018 às 01:51
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -223,6 +223,13 @@ CREATE TABLE `tbl_usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Extraindo dados da tabela `tbl_usuarios`
+--
+
+INSERT INTO `tbl_usuarios` (`id_user`, `nome_user`, `login_user`, `senha_user`, `cargo_user`, `privilegio_user`) VALUES
+(2, 'thiago moyses', 'thiago', '123', 'CEO', 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -358,7 +365,7 @@ ALTER TABLE `tbl_produtos`
 -- AUTO_INCREMENT for table `tbl_usuarios`
 --
 ALTER TABLE `tbl_usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
