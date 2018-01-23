@@ -11,8 +11,9 @@ import visao.Menu;
 public class controlLogin {
     Conexao con = new Conexao();
     
+    //VALIDANDO INFORMAÇOES DO USUARIO
+    
     public void valida(String login, String senha){
-    /*########################################################################*/
         con.conexao();
     try {
                 con.executaSQL("SELECT * FROM tbl_usuarios WHERE login_user = '" + 
