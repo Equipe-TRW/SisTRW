@@ -3,6 +3,7 @@ package controle;
 import db.Conexao;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import visao.Login;
 import visao.Menu;
 /**
  *
@@ -24,9 +25,12 @@ public class controlLogin {
                 
                 if(con.rs.getString("senha_user").equals(senha)){
                     Menu menu = new Menu();
+                   Login log = new Login();
                     JOptionPane.showMessageDialog(null, "Seja Bem Vindo " + 
                             con.rs.getString("nome_user"));
                     menu.setVisible(true);
+                    log.dispose();
+                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Senha Invalida!");
                 }
