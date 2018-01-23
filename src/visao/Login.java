@@ -7,18 +7,19 @@ package visao;
 
 import javax.swing.JOptionPane;
 import controle.controlLogin;
+import modelo.modeloLogin;
 
 /**
  *
  * @author informatica01
  */
 public class Login extends javax.swing.JFrame {
-    /**
-     * Creates new form Login
-     */
+    
+    controlLogin controle = new controlLogin();
+    modeloLogin mod = new modeloLogin();
+    
     public Login() {
-        initComponents();
-        
+        initComponents();        
     }
 
     /**
@@ -110,9 +111,11 @@ public class Login extends javax.swing.JFrame {
             cxtSenha.setText("");
             cxtSenha.requestFocus();
         }else{
-            controlLogin controle = new controlLogin();
-            controle.valida(cxtLogin.getText(), cxtSenha.getText());
-            
+            //ENVIANDO DADOS DAS JTEXTFIELD PARA A CAMADA MODELO ATRAVÉS DO MÉTODO SET
+            mod.setUsuario(cxtLogin.getText());
+            mod.setSenha(cxtSenha.getText());
+            //ENVIANDO OS DADOS DA CAMADA MODELOLOGIN PARA A CAMADA DE CONTROLE
+            controle.valida(mod);
         }
         
     }//GEN-LAST:event_btnLogarActionPerformed
