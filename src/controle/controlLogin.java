@@ -23,7 +23,8 @@ public class controlLogin {
                 
                 if(con.rs.getString("senha_user").equals(senha)){
                     Menu menu = new Menu();
-                    JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
+                    JOptionPane.showMessageDialog(null, "Seja Bem Vindo " + 
+                            con.rs.getString("nome_user"));
                     menu.setVisible(true);
                 }else{
                     JOptionPane.showMessageDialog(null, "Senha Invalida!");
