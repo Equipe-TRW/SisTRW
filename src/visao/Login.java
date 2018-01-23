@@ -5,27 +5,20 @@
  */
 package visao;
 
-import java.awt.JobAttributes;
 import javax.swing.JOptionPane;
-import db.Conexao;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import visao.Menu;
+import controle.controlLogin;
+
 /**
  *
  * @author informatica01
  */
 public class Login extends javax.swing.JFrame {
-    Conexao con = new Conexao();
-    
-
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-        con.conexao();
+        
     }
 
     /**
@@ -108,35 +101,17 @@ public class Login extends javax.swing.JFrame {
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
         if(cxtLogin.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por Favor, digite um usuario e senha para logar no sistema !");
+            cxtLogin.setText("");
+            cxtSenha.setText("");
             cxtLogin.requestFocus();
         }else if(cxtSenha.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por Favor, digite uma senha para logar no sistema");
+            cxtLogin.setText("");
+            cxtSenha.setText("");
             cxtSenha.requestFocus();
         }else{
-            
-            try {
-                con.executaSQL("SELECT * FROM tbl_usuarios WHERE login_user = '" + 
-                    cxtLogin.getText() + "'");
-                con.rs.first();
-                
-                //VALIDANDO SENHA NO BANCO
-                
-                if(con.rs.getString("senha_user").equals(cxtSenha.getText())){
-                    Menu menu = new Menu();
-                    JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
-                    menu.setVisible(true);
-                    dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Senha Invalida!");
-                    cxtLogin.setText("");
-                    cxtSenha.setText("");
-                }
-                
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Usuario Invalido!");
-                cxtLogin.setText("");
-                cxtSenha.setText("");
-            }
+            controlLogin controle = new controlLogin();
+            controle.valida(cxtLogin.getText(), cxtSenha.getText());
             
         }
         
