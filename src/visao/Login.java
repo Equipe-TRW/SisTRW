@@ -7,18 +7,25 @@ package visao;
 
 import java.awt.JobAttributes;
 import javax.swing.JOptionPane;
-
+import db.Conexao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import visao.Menu;
 /**
  *
  * @author informatica01
  */
 public class Login extends javax.swing.JFrame {
+    Conexao con = new Conexao();
+    
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        con.conexao();
     }
 
     /**
@@ -106,16 +113,31 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por Favor, digite uma senha para logar no sistema");
             cxtSenha.requestFocus();
         }else{
-            if((cxtLogin.getText().equals("admin"))&&(cxtSenha.getText().equals("admin"))){
-                Menu abreMenu=new Menu();
-                abreMenu.setVisible(true);
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "Usuario ou Senha Invalido !");
+            
+            try {
+                con.executaSQL("SELECT * FROM tbl_usuarios WHERE login_user = '" + 
+                    cxtLogin.getText() + "'");
+                con.rs.first();
+                
+                //VALIDANDO SENHA NO BANCO
+                
+                if(con.rs.getString("senha_user").equals(cxtSenha.getText())){
+                    Menu menu = new Menu();
+                    JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
+                    menu.setVisible(true);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Senha Invalida!");
+                    cxtLogin.setText("");
+                    cxtSenha.setText("");
+                }
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Usuario Invalido!");
                 cxtLogin.setText("");
                 cxtSenha.setText("");
-                cxtLogin.requestFocus();
             }
+            
         }
         
     }//GEN-LAST:event_btnLogarActionPerformed
