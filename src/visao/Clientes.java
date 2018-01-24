@@ -504,8 +504,7 @@ public class Clientes extends javax.swing.JFrame {
         mod.setCep(cxtCep.getText());
         mod.setCidade(cxtCidade.getText());
         mod.setCpf(cxtCPF.getText());
-        
-        
+        mod.setData_nasc((java.sql.Date) cxtDataNasc.getDate());
         mod.setEmail(cxtEmail.getText());
         mod.setEndereco(cxtEndereco.getText());
         mod.setEstado(cxtEstado.getText());
@@ -515,6 +514,7 @@ public class Clientes extends javax.swing.JFrame {
         mod.setNome_cli(cxtNome.getText());
         mod.setNumero(Integer.parseInt(cxtNum.getText()));
         mod.setRg(cxtRG.getText());
+        control.cadastraClientes(mod);
         
         cxtBairro.setText("");
         cxtCPF.setText("");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Jan-2018 às 12:49
+-- Generation Time: 24-Jan-2018 às 13:30
 -- Versão do servidor: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -75,7 +75,7 @@ CREATE TABLE `tbl_clientes` (
   `email_cli` varchar(50) DEFAULT NULL,
   `rg_cli` varchar(20) DEFAULT NULL,
   `cpf_cli` varchar(20) DEFAULT NULL,
-  `cep` int(11) NOT NULL,
+  `cep` varchar(20) DEFAULT NULL,
   `estado_cli` varchar(10) DEFAULT NULL,
   `cidade_cli` varchar(40) DEFAULT NULL,
   `bairro_cli` varchar(40) DEFAULT NULL,
@@ -88,24 +88,12 @@ CREATE TABLE `tbl_clientes` (
 --
 
 INSERT INTO `tbl_clientes` (`id_cli`, `nome_cli`, `data_nasc`, `genero`, `fone1_cli`, `fone2_cli`, `email_cli`, `rg_cli`, `cpf_cli`, `cep`, `estado_cli`, `cidade_cli`, `bairro_cli`, `endereco_cli`, `numero_cli`) VALUES
-(1, 'William josé dias', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(3, 'Marcos Alexandre', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(4, 'Thiago Moyses', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(5, 'Rafael', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(6, 'Deusdete', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(7, 'Tiãoooooo', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(8, 'Caralho', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(9, 'Roberval Oliveira', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(10, 'Fatima Bernardes', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(11, 'Neymar Junior', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(12, 'Michael Jackson', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(13, 'Ronaldinho Gaucho', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(14, 'M', '2018-01-26', 'Masculino', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(15, 'Fabio Jr', '2018-01-26', '', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(16, 'Elivelton kkk', '2018-01-26', '', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(17, 'Gerente do Thiago', '2018-01-26', '', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(18, 'Alberval Deusdete Ogomes', '2018-01-26', '', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519),
-(19, 'Whindersson Nunes', '2018-01-26', '', '3864-9847', '3864-9847', 'william@william.com.br', '44.444.444-55', '444.444.444222', 0, 'SP', 'Sumaré', 'Nova Terra', 'denilson oliveira', 519);
+(21, 'William José Dias', NULL, 'Masculino', '(22)22222-2222', '(22)22222-2222', 'william@william.com.br', '55.555.555-5', '555.555.555-55', '13179072', 'SP', 'Sumaré', 'Jardim Minezotta (Nova Veneza)', 'Rua Denilson de Oliveira', 500),
+(22, 'Thiago Moyses', NULL, 'Feminino', '(11)11111-1111', '(11)11111-1111', 'thiago@thiago.com.br', '88.888.888-8', '888.888.888-88', '13179071', 'SP', 'Sumaré', 'Jardim Minezotta (Nova Veneza)', 'Rua Manoel Messias da Silva de 601/602 a 1999/2000', 200),
+(23, 'Rafael Angolano', NULL, 'Feminino', '(24)22222-2222', '(22)22222-2222', 'rafael@angola.com.br', '55.555.555-5', '555.555.555-55', '13179050', 'SP', 'Sumaré', 'Jardim Nova Terra (Nova Veneza)', 'Rua Luiz Matias da Silva', 24),
+(24, 'Caralho', NULL, 'Masculino', '(24)24242-4242', '(24)24242-4242', 'caralho@caralho.com.br', '55.555.555-5', '555.555.555-55', '13179090', 'SP', 'Sumaré', 'Jardim Minezotta (Nova Veneza)', 'Rua Vinte e Sete', 800),
+(25, 'Campo de Data do Caralho', NULL, 'Masculino', '(99)99999-9999', '(99)99999-9999', 'jdateChoserDoCaralho@tomarnocu.com.br', '55.555.555-5', '555.555.555-55', '13179040', 'SP', 'Sumaré', 'Jardim Nova Terra (Nova Veneza)', 'Rua Júlia Maria Galiêta', 500),
+(26, 'uhjkhjkhjkh', NULL, 'Masculino', '(99)99999-9999', '(99)99999-9999', 'gfhfghf', '55.555.555-5', '555.555.555-55', '13179072', 'SP', 'Sumaré', 'Jardim Minezotta (Nova Veneza)', 'Rua Denilson de Oliveira', 519);
 
 -- --------------------------------------------------------
 
@@ -333,7 +321,7 @@ ALTER TABLE `tbl_categorias`
 -- AUTO_INCREMENT for table `tbl_clientes`
 --
 ALTER TABLE `tbl_clientes`
-  MODIFY `id_cli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_cli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `tbl_contas_pagar`
 --
