@@ -121,6 +121,11 @@ public class PesquisaClientes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePesqCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePesqCliMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablePesqCli);
 
         btnCarregar.setBackground(new java.awt.Color(0, 102, 51));
@@ -194,27 +199,56 @@ public class PesquisaClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarregarActionPerformed
-        id=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 0));
-        nome=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 1);
-        data=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 2);
-        genero=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 3);
-        fon1=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 4);
-        fone2=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 5);
-        email=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 6);
-        rg=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 7);
-        cpf=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 8);
-        cep=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 9);
-        estado=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 10);
-        cidade=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 11);
-        bairro=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 12);
-        endereco=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 13));
-        numero=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 14));
-        this.dispose();
+            if(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 0)==""){
+                JOptionPane.showMessageDialog(null, "Favor selecionar um cliente !");
+            }else{
+                id=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 0));
+                nome=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 1);
+                data=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 2);
+                genero=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 3);
+                fon1=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 4);
+                fone2=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 5);
+                email=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 6);
+                rg=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 7);
+                cpf=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 8);
+                cep=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 9);
+                estado=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 10);
+                cidade=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 11);
+                bairro=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 12);
+                endereco=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 13));
+                numero=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 14));
+                this.dispose();
+            } 
     }//GEN-LAST:event_btnCarregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         preenchetablePesqCli("select * from tbl_clientes where nome_cli like '%"+cxtPesquisa.getText()+"%'");
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tablePesqCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePesqCliMouseClicked
+        if(evt.getClickCount()>1){
+            if(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 0).equals("")){
+                JOptionPane.showMessageDialog(null, "Favor selecionar um cliente !");
+            }else{
+                id=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 0));
+                nome=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 1);
+                data=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 2);
+                genero=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 3);
+                fon1=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 4);
+                fone2=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 5);
+                email=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 6);
+                rg=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 7);
+                cpf=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 8);
+                cep=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 9);
+                estado=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 10);
+                cidade=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 11);
+                bairro=(String) tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 12);
+                endereco=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 13));
+                numero=String.valueOf(tablePesqCli.getModel().getValueAt(tablePesqCli.getSelectedRow(), 14));
+                this.dispose();
+            }    
+        }
+    }//GEN-LAST:event_tablePesqCliMouseClicked
 
     /**
      * @param args the command line arguments

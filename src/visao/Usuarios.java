@@ -499,8 +499,7 @@ public class Usuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisasrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisasrActionPerformed
-        PesquisaClientes abreCli=new PesquisaClientes();
-        abreCli.setVisible(true);
+
     }//GEN-LAST:event_btnPesquisasrActionPerformed
 
     private void OpenImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenImgActionPerformed
