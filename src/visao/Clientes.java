@@ -22,6 +22,7 @@ public class Clientes extends javax.swing.JFrame {
     BuscaCep bcCep=new BuscaCep();
     controlClientes control=new controlClientes();
     Conexao conectaCli=new Conexao();
+    int idCliente;
     
     public Clientes() {
         initComponents();
@@ -442,6 +443,50 @@ public class Clientes extends javax.swing.JFrame {
     private void btnPesquisasrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisasrActionPerformed
         PesquisaClientes abreCli=new PesquisaClientes();
         abreCli.setVisible(true);
+        
+        abreCli.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                cxtBairro.setEnabled(true);
+                cxtCPF.setEnabled(true);
+                cxtCep.setEnabled(true);
+                cxtCidade.setEnabled(true);
+                cxtCidade.setEnabled(true);
+                cxtDataNasc.setEnabled(true);
+                cxtEmail.setEnabled(true);
+                cxtEstado.setEnabled(true);
+                cxtFone1.setEnabled(true);
+                cxtFone2.setEnabled(true);
+                cxtNome.setEnabled(true);
+                cxtRG.setEnabled(true);
+                cxtgenero.setEnabled(true);
+                cxtEndereco.setEnabled(true);
+                cxtNum.setEnabled(true); 
+                btnBuscaCep.setEnabled(true);
+                
+                btnNovo.setEnabled(true);
+                btnSalvar.setEnabled(false);
+                btnExcluir.setEnabled(true);
+                btnAlterar.setEnabled(true); 
+                //RECUPERANDO VALORES E SETANDO NAS CAIXAS DE TEXTO
+                cxtNome.setText(abreCli.nome);
+                cxtDataNasc.setToolTipText(abreCli.data);
+                cxtgenero.setSelectedItem(abreCli.genero);
+                cxtFone1.setText(abreCli.fon1);
+                cxtFone2.setText(abreCli.fone2);
+                cxtEmail.setText(abreCli.email);
+                cxtRG.setText(abreCli.rg);
+                cxtCPF.setText(abreCli.cpf);
+                cxtCep.setText(abreCli.cep);
+                cxtEstado.setText(abreCli.estado);
+                cxtCidade.setText(abreCli.cidade);
+                cxtBairro.setText(abreCli.bairro);
+                cxtEndereco.setText(abreCli.endereco);
+                cxtNum.setText(String.valueOf(abreCli.numero));
+                //RECEBE O ID DESSE CLIENTE E ARMAZENA EM UMA VARIAVEL PARA USAR EM FUTURAS ALTERAÇÕES
+                idCliente=Integer.parseInt(abreCli.id);
+            }    
+       });
     }//GEN-LAST:event_btnPesquisasrActionPerformed
 
     private void btnBuscaCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaCepActionPerformed
@@ -453,15 +498,14 @@ public class Clientes extends javax.swing.JFrame {
                 cxtEndereco.setText("");
                 cxtBairro.setText("");
                 cxtCep.setText("");
-                JOptionPane.showMessageDialog(null, "CEP Invalido!");
+                JOptionPane.showMessageDialog(null, "Cep não encontrado !"+"\n"+"Favor digitar o cep corretamente ou inserir os dados manualmente.");
                 cxtCep.requestFocus();
             }else{
                 cxtCidade.setText(bcCep.getCidade(Cep));
                 cxtEstado.setText(bcCep.getUF(Cep));
                 cxtEndereco.setText(bcCep.getEndereco(Cep));
                 cxtBairro.setText(bcCep.getBairro(Cep));
-                cxtNum.requestFocus();
-            
+                cxtNum.requestFocus();              
             }
             
         } catch (Exception e) {
@@ -512,104 +556,138 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        mod.setBairro(cxtBairro.getText());
-        mod.setCep(cxtCep.getText());
-        mod.setCidade(cxtCidade.getText());
-        mod.setCpf(cxtCPF.getText());
-        mod.setData_nasc((java.sql.Date) cxtDataNasc.getDate());
-        mod.setEmail(cxtEmail.getText());
-        mod.setEndereco(cxtEndereco.getText());
-        mod.setEstado(cxtEstado.getText());
-        mod.setFone1(cxtFone1.getText());
-        mod.setFone2(cxtFone2.getText());
-        mod.setGenero(String.valueOf(cxtgenero.getSelectedItem()));
-        mod.setNome_cli(cxtNome.getText());
-        mod.setNumero(Integer.parseInt(cxtNum.getText()));
-        mod.setRg(cxtRG.getText());
-        control.cadastraClientes(mod);
-        
-        cxtBairro.setText("");
-        cxtCPF.setText("");
-        cxtCep.setText("");
-        cxtCidade.setText("");
-        cxtCidade.setText("");
-        cxtDataNasc.setDateFormatString("");
-        cxtEmail.setText("");
-        cxtEstado.setText("");
-        cxtFone1.setText("");
-        cxtFone2.setText("");
-        cxtNome.setText("");
-        cxtRG.setText("");
-        cxtgenero.setSelectedItem("<Selecione>");
-        cxtEndereco.setText("");
-        cxtNum.setText("");
-            
-        cxtBairro.setEnabled(false);
-        cxtCPF.setEnabled(false);
-        cxtCep.setEnabled(false);
-        cxtCidade.setEnabled(false);
-        cxtCidade.setEnabled(false);
-        cxtDataNasc.setEnabled(false);
-        cxtEmail.setEnabled(false);
-        cxtEstado.setEnabled(false);
-        cxtFone1.setEnabled(false);
-        cxtFone2.setEnabled(false);
-        cxtNome.setEnabled(false);
-        cxtRG.setEnabled(false);
-        cxtgenero.setEnabled(false);
-        cxtEndereco.setEnabled(false);
-        cxtNum.setEnabled(false); 
-        
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-        btnAlterar.setEnabled(false);
+        if(cxtNome.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite um nome para o cliente.");
+            cxtNome.requestFocus();
+        }else if(cxtFone1.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite um telefone para o cliente.");
+            cxtFone1.requestFocus();
+        }else{     
+            mod.setBairro(cxtBairro.getText());
+            mod.setCep(cxtCep.getText());
+            mod.setCidade(cxtCidade.getText());
+            mod.setCpf(cxtCPF.getText());
+            mod.setData_nasc((java.sql.Date) cxtDataNasc.getDate());
+            mod.setEmail(cxtEmail.getText());
+            mod.setEndereco(cxtEndereco.getText());
+            mod.setEstado(cxtEstado.getText());
+            mod.setFone1(cxtFone1.getText());
+            mod.setFone2(cxtFone2.getText());
+            mod.setGenero(String.valueOf(cxtgenero.getSelectedItem()));
+            mod.setNome_cli(cxtNome.getText());
+            mod.setNumero(Integer.parseInt(cxtNum.getText()));
+            mod.setRg(cxtRG.getText());
+            control.cadastraClientes(mod);
+
+            cxtBairro.setText("");
+            cxtCPF.setText("");
+            cxtCep.setText("");
+            cxtCidade.setText("");
+            cxtCidade.setText("");
+            cxtDataNasc.setDateFormatString("");
+            cxtEmail.setText("");
+            cxtEstado.setText("");
+            cxtFone1.setText("");
+            cxtFone2.setText("");
+            cxtNome.setText("");
+            cxtRG.setText("");
+            cxtgenero.setSelectedItem("<Selecione>");
+            cxtEndereco.setText("");
+            cxtNum.setText("");
+
+            cxtBairro.setEnabled(false);
+            cxtCPF.setEnabled(false);
+            cxtCep.setEnabled(false);
+            cxtCidade.setEnabled(false);
+            cxtCidade.setEnabled(false);
+            cxtDataNasc.setEnabled(false);
+            cxtEmail.setEnabled(false);
+            cxtEstado.setEnabled(false);
+            cxtFone1.setEnabled(false);
+            cxtFone2.setEnabled(false);
+            cxtNome.setEnabled(false);
+            cxtRG.setEnabled(false);
+            cxtgenero.setEnabled(false);
+            cxtEndereco.setEnabled(false);
+            cxtNum.setEnabled(false); 
+
+            btnNovo.setEnabled(true);
+            btnSalvar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+            btnAlterar.setEnabled(false);
+        }    
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        cxtBairro.setText("");
-        cxtCPF.setText("");
-        cxtCep.setText("");
-        cxtCidade.setText("");
-        cxtCidade.setText("");
-        cxtDataNasc.setDateFormatString("");
-        cxtEmail.setText("");
-        cxtEstado.setText("");
-        cxtFone1.setText("");
-        cxtFone2.setText("");
-        cxtNome.setText("");
-        cxtRG.setText("");
-        cxtgenero.setSelectedItem("<Selecione>");
-        cxtEndereco.setText("");
-        cxtNum.setText("");
-            
-        cxtBairro.setEnabled(false);
-        cxtCPF.setEnabled(false);
-        cxtCep.setEnabled(false);
-        cxtCidade.setEnabled(false);
-        cxtCidade.setEnabled(false);
-        cxtDataNasc.setEnabled(false);
-        cxtEmail.setEnabled(false);
-        cxtEstado.setEnabled(false);
-        cxtFone1.setEnabled(false);
-        cxtFone2.setEnabled(false);
-        cxtNome.setEnabled(false);
-        cxtRG.setEnabled(false);
-        cxtgenero.setEnabled(false);
-        cxtEndereco.setEnabled(false);
-        cxtNum.setEnabled(false); 
-        
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-        btnAlterar.setEnabled(false);
+        int exclui=JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esse cliente ?","Atenção",JOptionPane.YES_NO_OPTION);
+        if(exclui==JOptionPane.YES_OPTION){
+            mod.setId_cli(idCliente);
+            control.ExcluiCliente(mod);
+
+            cxtBairro.setText("");
+            cxtCPF.setText("");
+            cxtCep.setText("");
+            cxtCidade.setText("");
+            cxtCidade.setText("");
+            cxtDataNasc.setDateFormatString("");
+            cxtEmail.setText("");
+            cxtEstado.setText("");
+            cxtFone1.setText("");
+            cxtFone2.setText("");
+            cxtNome.setText("");
+            cxtRG.setText("");
+            cxtgenero.setSelectedItem("<Selecione>");
+            cxtEndereco.setText("");
+            cxtNum.setText("");
+
+            cxtBairro.setEnabled(false);
+            cxtCPF.setEnabled(false);
+            cxtCep.setEnabled(false);
+            cxtCidade.setEnabled(false);
+            cxtCidade.setEnabled(false);
+            cxtDataNasc.setEnabled(false);
+            cxtEmail.setEnabled(false);
+            cxtEstado.setEnabled(false);
+            cxtFone1.setEnabled(false);
+            cxtFone2.setEnabled(false);
+            cxtNome.setEnabled(false);
+            cxtRG.setEnabled(false);
+            cxtgenero.setEnabled(false);
+            cxtEndereco.setEnabled(false);
+            cxtNum.setEnabled(false); 
+
+            btnNovo.setEnabled(true);
+            btnSalvar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+            btnAlterar.setEnabled(false);
+        }    
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        btnNovo.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnExcluir.setEnabled(true);
-        btnAlterar.setEnabled(true);
+        int altera=JOptionPane.showConfirmDialog(null, "Tem certeza que deseja alterar os dados desse cliente ?","Atenção",JOptionPane.YES_NO_OPTION);
+        if(altera==JOptionPane.YES_OPTION){      
+            mod.setBairro(cxtBairro.getText());
+            mod.setCep(cxtCep.getText());
+            mod.setCidade(cxtCidade.getText());
+            mod.setCpf(cxtCPF.getText());
+            mod.setData_nasc((java.sql.Date) cxtDataNasc.getDate());
+            mod.setEmail(cxtEmail.getText());
+            mod.setEndereco(cxtEndereco.getText());
+            mod.setEstado(cxtEstado.getText());
+            mod.setFone1(cxtFone1.getText());
+            mod.setFone2(cxtFone2.getText());
+            mod.setGenero(String.valueOf(cxtgenero.getSelectedItem()));
+            mod.setNome_cli(cxtNome.getText());
+            mod.setNumero(Integer.parseInt(cxtNum.getText()));
+            mod.setRg(cxtRG.getText());
+            mod.setId_cli(idCliente);
+            control.AlteraCliente(mod);
+        
+            btnNovo.setEnabled(true);
+            btnSalvar.setEnabled(false);
+            btnExcluir.setEnabled(true);
+            btnAlterar.setEnabled(true);
+        }    
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
