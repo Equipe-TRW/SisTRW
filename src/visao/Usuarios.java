@@ -605,9 +605,7 @@ public class Usuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_opAdminActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-        //PASSANDO INFORMAÇOES PARA O MODELO USER
-        
+        //PASSANDO INFORMAÇOES PARA O MODELO USER       
         modeloUser mod = new modeloUser();
         controlUsuarios controle = new controlUsuarios();
         
