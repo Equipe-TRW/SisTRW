@@ -43,7 +43,6 @@ public class BuscaCep {
             
 
         }
-        JOptionPane.showMessageDialog(null, "CEP Invalido!");
         return null;
         
     }

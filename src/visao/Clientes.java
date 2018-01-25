@@ -447,11 +447,23 @@ public class Clientes extends javax.swing.JFrame {
     private void btnBuscaCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaCepActionPerformed
         try {
             String Cep=cxtCep.getText();
-            cxtCidade.setText(bcCep.getCidade(Cep));
-            cxtEstado.setText(bcCep.getUF(Cep));
-            cxtEndereco.setText(bcCep.getEndereco(Cep));
-            cxtBairro.setText(bcCep.getBairro(Cep));
-            cxtNum.requestFocus();
+            if((bcCep.getBairro(Cep) == null)||(bcCep.getCidade(Cep) == null)||(bcCep.getEndereco(Cep) == null)||(bcCep.getUF(Cep) == null)){
+                cxtCidade.setText("");
+                cxtEstado.setText("");
+                cxtEndereco.setText("");
+                cxtBairro.setText("");
+                cxtCep.setText("");
+                JOptionPane.showMessageDialog(null, "CEP Invalido!");
+                cxtCep.requestFocus();
+            }else{
+                cxtCidade.setText(bcCep.getCidade(Cep));
+                cxtEstado.setText(bcCep.getUF(Cep));
+                cxtEndereco.setText(bcCep.getEndereco(Cep));
+                cxtBairro.setText(bcCep.getBairro(Cep));
+                cxtNum.requestFocus();
+            
+            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Buscar Cep !");
         }
