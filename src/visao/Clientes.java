@@ -648,7 +648,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField cxtCidade;
     private com.toedter.calendar.JDateChooser cxtDataNasc;
     private javax.swing.JTextField cxtEmail;
-    private javax.swing.JTextField cxtEndereco;
+    public static javax.swing.JTextField cxtEndereco;
     private javax.swing.JTextField cxtEstado;
     private javax.swing.JFormattedTextField cxtFone1;
     private javax.swing.JFormattedTextField cxtFone2;

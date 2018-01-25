@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.SocketTimeoutException;
+import javax.swing.JOptionPane;
+import visao.Clientes;
 
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
@@ -34,11 +36,16 @@ public class BuscaCep {
         }
 
         } catch (SocketTimeoutException e) {
+            
+            
 
         } catch (HttpStatusException w) {
+            
 
         }
-        return CEP;
+        JOptionPane.showMessageDialog(null, "CEP Invalido!");
+        return null;
+        
     }
 
     public String getBairro(String CEP) throws IOException {
@@ -59,7 +66,7 @@ public class BuscaCep {
         } catch (HttpStatusException w) {
 
         }
-        return CEP;
+        return null;
     }
 
     public String getCidade(String CEP) throws IOException {
@@ -80,7 +87,7 @@ public class BuscaCep {
         } catch (HttpStatusException w) {
 
         }
-        return CEP;
+        return null;
     }
 
     public String getUF(String CEP) throws IOException {
@@ -101,6 +108,6 @@ public class BuscaCep {
         } catch (HttpStatusException w) {
 
         }
-        return CEP;
+        return null;
     }
 }
