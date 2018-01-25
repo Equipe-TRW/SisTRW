@@ -49,7 +49,7 @@ public class controlClientes {
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Erro ao excluir Cliente !");
                 }
-            conectaCli.desconcta();
+            conectaCli.desconecta();
     }
     
     public void AlteraCliente(modeloClientes mod){
@@ -76,7 +76,7 @@ public class controlClientes {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro ao alterar dados de Cliente !");
             }
-        conectaCli.desconcta();
+        conectaCli.desconecta();
     }
 }
 
