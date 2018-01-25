@@ -36,6 +36,6 @@ public class controlLogin {
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Usuario Invalido!");
             }
-            con.desconcta();
+            con.desconecta();
     }
 }

@@ -47,7 +47,7 @@ public class PesquisaClientes extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro ao preencher Tabela!"+e);
             }
-            conectaCli.desconcta();
+            conectaCli.desconecta();
             modeloTabela tabela=new modeloTabela(dados, colunas);
             
             tablePesqCli.setModel(tabela);

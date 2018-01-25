@@ -38,7 +38,7 @@ public class Conexao {
       
     }
    
-   public void desconcta(){
+   public void desconecta(){
        try {
            conn.close();
            //JOptionPane.showMessageDialog(null, "Desconectado com Sucesso ");

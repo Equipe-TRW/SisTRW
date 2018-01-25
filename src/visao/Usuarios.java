@@ -5,7 +5,6 @@
  */
 package visao;
 
-import java.*;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,8 +12,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import modelo.modeloUser;
+import db.Conexao;
+import controle.controlUsuarios;
 
 public class Usuarios extends javax.swing.JFrame {
+    Conexao conecta = new Conexao();
 
     BufferedImage imagemBuffer=null;
     
@@ -33,18 +36,18 @@ public class Usuarios extends javax.swing.JFrame {
         PanelDadosCadastrais = new javax.swing.JPanel();
         OpenImg = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cxtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        cxtLogin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField3 = new javax.swing.JTextField();
+        cxtSenha = new javax.swing.JPasswordField();
+        cxtCargo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        cxtCPF = new javax.swing.JTextField();
+        cxtRG = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        cxtSalario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         lblFoto = new javax.swing.JLabel();
         PanelNivelAcesso = new javax.swing.JPanel();
@@ -66,7 +69,7 @@ public class Usuarios extends javax.swing.JFrame {
         checkRel = new java.awt.Checkbox();
         checkFinan = new java.awt.Checkbox();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btnPesquisasr = new javax.swing.JButton();
@@ -88,23 +91,23 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jLabel1.setText("Nome:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 204));
-        jTextField1.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        cxtNome.setBackground(new java.awt.Color(255, 255, 204));
+        cxtNome.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jLabel2.setText("Login:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 204));
-        jTextField2.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        cxtLogin.setBackground(new java.awt.Color(255, 255, 204));
+        cxtLogin.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jLabel3.setText("Senha:");
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 204));
-        jPasswordField1.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        cxtSenha.setBackground(new java.awt.Color(255, 255, 204));
+        cxtSenha.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 204));
-        jTextField3.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        cxtCargo.setBackground(new java.awt.Color(255, 255, 204));
+        cxtCargo.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jLabel4.setText("Cargo:");
@@ -112,17 +115,17 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jLabel5.setText("CPF:");
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 204));
-        jTextField4.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        cxtCPF.setBackground(new java.awt.Color(255, 255, 204));
+        cxtCPF.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 204));
-        jTextField5.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        cxtRG.setBackground(new java.awt.Color(255, 255, 204));
+        cxtRG.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jLabel6.setText("RG:");
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 204));
-        jTextField6.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        cxtSalario.setBackground(new java.awt.Color(255, 255, 204));
+        cxtSalario.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
         jLabel7.setText("Salario Base R$:");
@@ -145,34 +148,31 @@ public class Usuarios extends javax.swing.JFrame {
                 .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                         .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
-                        .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(0, 210, Short.MAX_VALUE))
-                            .addComponent(jTextField1))
+                            .addComponent(cxtNome))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cxtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                         .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                .addComponent(cxtCPF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel5))
+                                .addComponent(cxtSenha, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(cxtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
+                            .addComponent(cxtCargo)
                             .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                 .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel4)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cxtRG, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -182,48 +182,49 @@ public class Usuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(OpenImg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cxtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                         .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                 .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cxtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cxtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                                 .addGroup(PanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDadosCadastraisLayout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cxtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDadosCadastraisLayout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(cxtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7))
-                    .addGroup(PanelDadosCadastraisLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(OpenImg)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                        .addComponent(jLabel7)
+                        .addGap(46, 46, 46))))
         );
 
         jTabbedPane1.addTab("Dados Cadastrais", PanelDadosCadastrais);
@@ -414,10 +415,20 @@ public class Usuarios extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
         jButton2.setText("Novo");
         jButton2.setToolTipText("Novo Cliente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Save.png"))); // NOI18N
-        jButton1.setText("Salvar");
-        jButton1.setToolTipText("Cadastrar Cliente");
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Save.png"))); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.setToolTipText("Cadastrar Cliente");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/atualizar.png"))); // NOI18N
         jButton4.setText("Alterar");
@@ -447,7 +458,7 @@ public class Usuarios extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -464,7 +475,7 @@ public class Usuarios extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnSalvar)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
@@ -594,6 +605,36 @@ public class Usuarios extends javax.swing.JFrame {
         
     }//GEN-LAST:event_opAdminActionPerformed
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        
+        //PASSANDO INFORMAÇOES PARA O MODELO USER
+        
+        modeloUser mod = new modeloUser();
+        controlUsuarios controle = new controlUsuarios();
+        
+        mod.setNome(cxtNome.getText());
+        mod.setLogin(cxtLogin.getText());
+        mod.setSenha(cxtSenha.getText());
+        mod.setCargo(cxtCargo.getText());
+        mod.setCPF(cxtCPF.getText());
+        mod.setRG(cxtRG.getText());
+        mod.setSalario(cxtSalario.getText());
+        
+        controle.cadastra_user(mod);
+        
+        cxtNome.setText("");
+        cxtLogin.setText("");
+        cxtSenha.setText("");
+        cxtCargo.setText("");
+        cxtCPF.setText("");
+        cxtRG.setText("");
+        cxtSalario.setText("");
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -634,6 +675,7 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JPanel PanelDadosCadastrais;
     private javax.swing.JPanel PanelNivelAcesso;
     private javax.swing.JButton btnPesquisasr;
+    private javax.swing.JButton btnSalvar;
     private java.awt.Checkbox checkAgend;
     private java.awt.Checkbox checkCat;
     private java.awt.Checkbox checkCli;
@@ -646,8 +688,14 @@ public class Usuarios extends javax.swing.JFrame {
     private java.awt.Checkbox checkProd;
     private java.awt.Checkbox checkRel;
     private java.awt.Checkbox checkUser;
+    private javax.swing.JTextField cxtCPF;
+    private javax.swing.JTextField cxtCargo;
+    private javax.swing.JTextField cxtLogin;
+    private javax.swing.JTextField cxtNome;
+    private javax.swing.JTextField cxtRG;
+    private javax.swing.JTextField cxtSalario;
+    private javax.swing.JPasswordField cxtSenha;
     private javax.swing.ButtonGroup gpPrevilegios;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -661,14 +709,7 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JRadioButton opAdmin;
     private javax.swing.JRadioButton opPerso;

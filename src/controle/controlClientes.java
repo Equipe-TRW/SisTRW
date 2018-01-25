@@ -36,6 +36,6 @@ public class controlClientes {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro ao Cadastrar Cliente !");
             }
-        conectaCli.desconcta();
+        conectaCli.desconecta();
     }
 }
