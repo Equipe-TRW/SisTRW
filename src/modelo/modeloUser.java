@@ -12,6 +12,20 @@ package modelo;
 public class modeloUser {
 
     /**
+     * @return the salario
+     */
+    public int getSalario() {
+        return salario;
+    }
+
+    /**
+     * @param salario the salario to set
+     */
+    public void setSalario(int salario) {
+        this.salario = salario;
+    }
+
+    /**
      * @return the nome
      */
     public String getNome() {
@@ -99,23 +113,14 @@ public class modeloUser {
     /**
      * @return the salario
      */
-    public String getSalario() {
-        return salario;
-    }
-
-    /**
-     * @param salario the salario to set
-     */
-    public void setSalario(String salario) {
-        this.salario = salario;
-    }
+   
     private String nome;
     private String login;
     private String senha;
     private String cargo;
     private String CPF;
     private String RG;
-    private String salario;
+    private int salario;
     
     
 }

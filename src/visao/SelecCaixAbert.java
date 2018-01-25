@@ -46,6 +46,11 @@ public class SelecCaixAbert extends javax.swing.JFrame {
         cxtCaixa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cxtCaixa.setForeground(new java.awt.Color(102, 102, 102));
         cxtCaixa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione>", "C1", "C2", "C3", "C4", "C5", "C6", "C7" }));
+        cxtCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cxtCaixaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -114,6 +119,10 @@ public class SelecCaixAbert extends javax.swing.JFrame {
         valorAbertura=(cxtValor.getText());
         this.dispose();
     }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void cxtCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxtCaixaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cxtCaixaActionPerformed
 
     /**
      * @param args the command line arguments

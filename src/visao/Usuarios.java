@@ -615,7 +615,7 @@ public class Usuarios extends javax.swing.JFrame {
         mod.setCargo(cxtCargo.getText());
         mod.setCPF(cxtCPF.getText());
         mod.setRG(cxtRG.getText());
-        mod.setSalario(cxtSalario.getText());
+        mod.setSalario(Integer.parseInt(cxtSalario.getText()));
         
         controle.cadastra_user(mod);
         

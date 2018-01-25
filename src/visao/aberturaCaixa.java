@@ -38,7 +38,7 @@ public class aberturaCaixa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        cxtSair = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         cxtVendDinheiro = new javax.swing.JTextField();
@@ -88,10 +88,15 @@ public class aberturaCaixa extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Sangria");
 
-        jButton3.setBackground(new java.awt.Color(0, 51, 51));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Fechar");
+        cxtSair.setBackground(new java.awt.Color(0, 51, 51));
+        cxtSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cxtSair.setForeground(new java.awt.Color(255, 255, 255));
+        cxtSair.setText("Fechar");
+        cxtSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cxtSairActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -158,7 +163,7 @@ public class aberturaCaixa extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cxtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1)
                             .addComponent(cxtValAbreCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
@@ -198,7 +203,7 @@ public class aberturaCaixa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cxtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -229,6 +234,14 @@ public class aberturaCaixa extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cxtSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxtSairActionPerformed
+        int sair= JOptionPane.showConfirmDialog(null, "Tem certeza que deseja finalizar o sistema ?","Atenção",JOptionPane.YES_NO_OPTION);
+        if(sair==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+        
+    }//GEN-LAST:event_cxtSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,6 +279,7 @@ public class aberturaCaixa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cxtSair;
     private javax.swing.JTextField cxtSangria;
     private javax.swing.JTextField cxtValAbreCaixa;
     private javax.swing.JTextField cxtValCaixa;
@@ -273,7 +287,6 @@ public class aberturaCaixa extends javax.swing.JFrame {
     private javax.swing.JTextField cxtVendDinheiro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
