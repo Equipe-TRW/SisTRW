@@ -38,4 +38,45 @@ public class controlClientes {
             }
         conectaCli.desconcta();
     }
+    
+    public void ExcluiCliente(modeloClientes mod){
+            conectaCli.conexao();
+                try {
+                    PreparedStatement pst=conectaCli.conn.prepareStatement("delete from tbl_clientes where id_cli=?");
+                    pst.setInt(1, mod.getId_cli());
+                    pst.execute();
+                    JOptionPane.showMessageDialog(null, "Cliente Excluido com Sucesso !");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao excluir Cliente !");
+                }
+            conectaCli.desconcta();
+    }
+    
+    public void AlteraCliente(modeloClientes mod){
+        conectaCli.conexao();
+            try {
+                PreparedStatement pst=conectaCli.conn.prepareStatement("update tbl_clientes set nome_cli=?, data_nasc=?, genero=?, fone1_cli=?, fone2_cli=?, email_cli=?, rg_cli=?, cpf_cli=?, cep=?, estado_cli=?, cidade_cli=?, bairro_cli=?, endereco_cli=?, numero_cli=? where id_cli=?");
+                pst.setString(1, mod.getNome_cli());
+                pst.setDate(2, mod.getData_nasc());
+                pst.setString(3, mod.getGenero());
+                pst.setString(4, mod.getFone1());
+                pst.setString(5, mod.getFone2());
+                pst.setString(6, mod.getEmail());
+                pst.setString(7, mod.getRg());
+                pst.setString(8, mod.getCpf());
+                pst.setString(9, mod.getCep());
+                pst.setString(10, mod.getEstado());
+                pst.setString(11, mod.getCidade());
+                pst.setString(12, mod.getBairro());
+                pst.setString(13, mod.getEndereco());
+                pst.setInt(14, mod.getNumero());
+                pst.setInt(15, mod.getId_cli());
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Dados Alterados com sucesso !");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao alterar dados de Cliente !");
+            }
+        conectaCli.desconcta();
+    }
 }
+
