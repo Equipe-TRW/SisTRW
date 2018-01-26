@@ -5,10 +5,25 @@
  */
 package controle;
 
-/**
- *
- * @author informatica01
- */
+import modelo.modeloCategorias;
+import db.Conexao;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 public class controlCatego {
+    Conexao conectaCat=new Conexao();
     
+    public void cadastraCat(modeloCategorias mod){
+        conectaCat.conexao();
+            try {
+                PreparedStatement pst=conectaCat.conn.prepareStatement("insert into tbl_categorias(nome_cat, desc_cat)values(?,?)");
+                pst.setString(1, mod.getCategoria());
+                pst.setString(2, mod.getDescricao());
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Categoria cadastrada com Sucesso !");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar categoria !");
+            }
+        conectaCat.desconecta();
+    }
 }

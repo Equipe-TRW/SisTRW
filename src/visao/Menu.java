@@ -7,15 +7,12 @@ package visao;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author informatica01
- */
-public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
+public class Menu extends javax.swing.JFrame {
+    
+    //VARIAVEL QUE IRÁ RECEBER O ID DO USUARIO QUE LOGOU NO SISTEMA, PARA SER USADO FUTURAMENTE NO PDV E OUTROS METODOS
+    int userLogado;
+    
     public Menu() {
         initComponents();
     }
@@ -105,7 +102,13 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem5.setText("Fornecedores");
         jMenu1.add(jMenuItem5);
 
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem6.setText("Categorias");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuItem7.setText("Lanches");
@@ -243,6 +246,11 @@ public class Menu extends javax.swing.JFrame {
         aberturaCaixa abreCaixa=new aberturaCaixa();
         abreCaixa.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        Categorias abreCat=new Categorias();
+        abreCat.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -442,8 +442,7 @@ public class Clientes extends javax.swing.JFrame {
 
     private void btnPesquisasrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisasrActionPerformed
         PesquisaClientes abreCli=new PesquisaClientes();
-        abreCli.setVisible(true);
-        
+        abreCli.setVisible(true);      
         abreCli.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -575,7 +574,11 @@ public class Clientes extends javax.swing.JFrame {
             mod.setFone2(cxtFone2.getText());
             mod.setGenero(String.valueOf(cxtgenero.getSelectedItem()));
             mod.setNome_cli(cxtNome.getText());
-            mod.setNumero(Integer.parseInt(cxtNum.getText()));
+                if(cxtNum.getText().equals("")){
+                    mod.setNumero(0);
+                }else{
+                    mod.setNumero(Integer.parseInt(cxtNum.getText())); 
+                }       
             mod.setRg(cxtRG.getText());
             control.cadastraClientes(mod);
 
