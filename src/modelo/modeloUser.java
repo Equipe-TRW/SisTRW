@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author informatica01
@@ -113,7 +115,24 @@ public class modeloUser {
     /**
      * @return the salario
      */
-   
+  
+
+    public ArrayList getTelas() {
+        return telas;
+    }
+
+    public void setTelas(ArrayList telas) {
+        this.telas = telas;
+    }
+
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
     private String nome;
     private String login;
     private String senha;
@@ -121,4 +140,6 @@ public class modeloUser {
     private String CPF;
     private String RG;
     private int salario;
+    private ArrayList telas=new ArrayList();
+    private int id_user;
 }

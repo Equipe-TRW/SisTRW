@@ -15,11 +15,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.modeloUser;
 import db.Conexao;
 import controle.controlUsuarios;
+import java.util.ArrayList;
+
 
 public class Usuarios extends javax.swing.JFrame {
     Conexao conecta = new Conexao();
-
     BufferedImage imagemBuffer=null;
+    controlUsuarios control=new controlUsuarios();
     
     public Usuarios() {
         initComponents();
@@ -386,7 +388,7 @@ public class Usuarios extends javax.swing.JFrame {
                     .addComponent(checkRel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkFinan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelNivelAcessoLayout = new javax.swing.GroupLayout(PanelNivelAcesso);
@@ -407,7 +409,7 @@ public class Usuarios extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Niveis de Acesso", PanelNivelAcesso);
@@ -610,19 +612,60 @@ public class Usuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_opAdminActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        //PASSANDO INFORMAÇOES PARA O MODELO USER       
+        //PASSANDO INFORMAÇOES PARA O MODELO USER
         modeloUser mod = new modeloUser();
-        controlUsuarios controle = new controlUsuarios();
-        
+        controlUsuarios controle = new controlUsuarios();        
         mod.setNome(cxtNome.getText());
         mod.setLogin(cxtLogin.getText());
         mod.setSenha(cxtSenha.getText());
         mod.setCargo(cxtCargo.getText());
         mod.setCPF(cxtCPF.getText());
         mod.setRG(cxtRG.getText());
-        mod.setSalario(Integer.parseInt(cxtSalario.getText()));
+        mod.setSalario(Integer.parseInt(cxtSalario.getText()));       
+        //RECEBENDO INFORMAÇÕES DAS CHECKBOX E ADICIONANDO EM UM ARRAY
+        ArrayList telas=new ArrayList();
+        if(checkAgend.getState()){
+            telas.add("menu_ferr_agend");
+        }
+        if(checkCat.getState()){
+            telas.add("menu_cad_cat");
+        }
+        if(checkCli.getState()){
+            telas.add("menu_cad_cli");
+        }
+        if(checkDel.getState()){
+            telas.add("menu_del_vend");
+        }
+        if(checkFinan.getState()){
+            telas.add("menu_finan");
+        }
+        if(checkForne.getState()){
+            telas.add("menu_cad_forn");
+        }
+        if(checkLanc.getState()){
+            telas.add("menu_cad_lanc");
+        }
+        if(checkMoto.getState()){
+            telas.add("menu_cad_moto");
+        }
+        if(checkPdv.getState()){
+            telas.add("menu_vend_pdv");
+        }
+        if(checkProd.getState()){
+            telas.add("menu_cad_prod");
+        }
+        if(checkRel.getState()){
+            telas.add("menu_rel");
+        }
+        if(checkUser.getState()){
+            telas.add("menu_cad_user");
+        }
+        control.cadastra_user(mod);      
+        mod.setId_user(control.descobreIdUser(mod));
+        mod.setTelas(telas);
+        control.cadastra_privilegio(mod);
         
-        controle.cadastra_user(mod);
+        
         
         cxtNome.setText("");
         cxtLogin.setText("");

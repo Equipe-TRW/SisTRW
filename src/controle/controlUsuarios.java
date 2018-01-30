@@ -12,7 +12,6 @@ public class controlUsuarios {
     Conexao con = new Conexao();
     modeloUser mod_user = new modeloUser();
     public void cadastra_user(modeloUser mod_user){
-        Usuarios usuarios = new Usuarios();
         con.conexao();            
             try {
                 String sql = "INSERT INTO tbl_usuarios(nome_user, login_user, senha_user, cargo_user, "
@@ -25,7 +24,7 @@ public class controlUsuarios {
                 pst.setString(5, mod_user.getCPF());
                 pst.setString(6, mod_user.getRG());
                 pst.setInt(7, mod_user.getSalario());
-                pst.execute();
+                pst.execute();               
                 JOptionPane.showMessageDialog(null, "Usuario Inserido com Sucesso");
                 
             } catch (SQLException ex) {
@@ -35,14 +34,32 @@ public class controlUsuarios {
         con.desconecta();   
     }
     
-    public void cadastra_privilegio(){
-        
-        String[] vetor = {};
-        
-        for (int i = 0; i < vetor.length; i++) {
-            
-            System.out.println(vetor[i]);    
+    public void cadastra_privilegio(modeloUser mod){
+        con.conexao();
+        try {
+            PreparedStatement pst=con.conn.prepareStatement("insert into tbl_privilegio (iduser_privilegio,tela_privilegio)values(?,?)");
+            for(int i=0; i<mod.getTelas().size();i++){
+                pst.setInt(1, mod.getId_user());
+                pst.setString(2, (String) mod.getTelas().get(i));
+                pst.execute();
+            }
+        } catch (Exception e) {
         }
+        con.desconecta();
+    }
     
+    public int descobreIdUser(modeloUser mod){
+        con.conexao();
+        int id=0;
+        try {
+            con.executaSQL("select * from tbl_usuarios where rg_user="+mod.getRG());
+            con.rs.first();
+            id=con.rs.getInt("id_user");
+        } catch (Exception e) {
+        
+        }
+        con.desconecta();
+        return id;
+        
     }
 }
