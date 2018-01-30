@@ -121,6 +121,4 @@ public class modeloUser {
     private String CPF;
     private String RG;
     private int salario;
-    
-    
 }

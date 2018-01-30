@@ -34,4 +34,15 @@ public class controlUsuarios {
         
         con.desconecta();   
     }
+    
+    public void cadastra_privilegio(){
+        
+        String[] vetor = {};
+        
+        for (int i = 0; i < vetor.length; i++) {
+            
+            System.out.println(vetor[i]);    
+        }
+    
+    }
 }
