@@ -21,14 +21,19 @@ public class controlLogin {
             try {
                 con.executaSQL("SELECT * FROM tbl_usuarios WHERE login_user = '"+mod.getUsuario()+ "'");
                 con.rs.first();                
-                //VALIDANDO SENHA NO BANCO               
+                //VALIDANDO SENHA E PRIVILEGIO NO BANCO               
                 if(con.rs.getString("senha_user").equals(mod.getSenha())){
                     Menu menu = new Menu();
                     Login log = new Login();
                     JOptionPane.showMessageDialog(null, "Seja Bem Vindo " + 
                     con.rs.getString("nome_user"));
                     menu.setVisible(true);
-                    log.dispose();                   
+                    
+                    String idprivi = con.rs.getString("id_user");
+                    con.executaSQLPrivilegio("SELECT * FROM tbl_privilegio WHERE iduser_privilegio = '" + idprivi
+                    + "'");
+                    
+                    log.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "Senha Invalida!");
                 }

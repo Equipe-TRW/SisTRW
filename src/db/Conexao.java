@@ -37,6 +37,16 @@ public class Conexao {
        }
       
     }
+    
+    public void executaSQLPrivilegio(String sql){
+       try {
+           stm=conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+           rs = stm.executeQuery(sql);          
+       } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "erro ao executar SQL"+ex);
+       }
+      
+    }
    
    public void desconecta(){
        try {
