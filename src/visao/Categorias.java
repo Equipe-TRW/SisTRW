@@ -159,6 +159,11 @@ public class Categorias extends javax.swing.JFrame {
             }
         });
 
+        cxtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cxtPesquisaActionPerformed(evt);
+            }
+        });
         cxtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cxtPesquisaKeyReleased(evt);
@@ -303,6 +308,10 @@ public class Categorias extends javax.swing.JFrame {
     private void cxtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cxtPesquisaKeyReleased
         preenchetabelaCategorias("select * from tbl_categorias where nome_cat like '%"+cxtPesquisa.getText()+"%'");
     }//GEN-LAST:event_cxtPesquisaKeyReleased
+
+    private void cxtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxtPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cxtPesquisaActionPerformed
 
     /**
      * @param args the command line arguments

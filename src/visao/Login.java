@@ -116,6 +116,7 @@ public class Login extends javax.swing.JFrame {
             mod.setSenha(cxtSenha.getText());
             //ENVIANDO OS DADOS DA CAMADA MODELOLOGIN PARA A CAMADA DE CONTROLE
             controle.valida(mod);
+            this.dispose();
         }
         
     }//GEN-LAST:event_btnLogarActionPerformed
