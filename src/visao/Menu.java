@@ -52,6 +52,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -174,6 +175,14 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem16.setText("Agenda");
         jMenu4.add(jMenuItem16);
 
+        jMenuItem19.setText("Configurar Email");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem19);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/help.png"))); // NOI18N
@@ -252,6 +261,11 @@ public class Menu extends javax.swing.JFrame {
         abreCat.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        ConfigEmail abreMail=new ConfigEmail();
+        abreMail.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -313,6 +327,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

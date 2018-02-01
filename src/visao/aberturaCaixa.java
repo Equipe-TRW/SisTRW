@@ -7,15 +7,16 @@ package visao;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author informatica01
- */
+import modelo.modeloConfigEmail;
+import controle.controlConfigEmail;
+
 public class aberturaCaixa extends javax.swing.JFrame {
     
     //CAIXA E OPERADOR QUE EFETUOU A AÇÃO DE ABRIR O CAIXA
     String caixa;
     String Operador;
+    modeloConfigEmail mod=new modeloConfigEmail();
+    controlConfigEmail control=new controlConfigEmail();
     
     public aberturaCaixa() {
         initComponents();
@@ -245,7 +246,10 @@ public class aberturaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFechaCaixaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        mod.setDestinatario("sistrwdesenvolvimentos@gmail.com");
+        mod.setMensagem("FOI REALIZADO UMA SANGRIA NO CAIXA XYZ NO VALOR DE R$:50000 REAIS");
+        mod.setAssunto("SANGRIA");
+        control.EmailAnexo(mod);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
