@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.modeloUser;
 import visao.Usuarios;
+import modelo.modeloLogin;
 
 //INSERINDO OS DADOS NO BANCO
 public class controlUsuarios {

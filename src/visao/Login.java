@@ -8,6 +8,7 @@ package visao;
 import javax.swing.JOptionPane;
 import controle.controlLogin;
 import modelo.modeloLogin;
+import controle.controlUsuarios;
 
 /**
  *
@@ -114,8 +115,11 @@ public class Login extends javax.swing.JFrame {
             //ENVIANDO DADOS DAS JTEXTFIELD PARA A CAMADA MODELO ATRAVÉS DO MÉTODO SET
             mod.setUsuario(cxtLogin.getText());
             mod.setSenha(cxtSenha.getText());
-            //ENVIANDO OS DADOS DA CAMADA MODELOLOGIN PARA A CAMADA DE CONTROLE
             controle.valida(mod);
+            mod.setId_user(controle.descobreIdUser(mod));
+            controle.liberaTelas(mod);
+ 
+            //ENVIANDO OS DADOS DA CAMADA MODELOLOGIN PARA A CAMADA DE CONTROLE
             this.dispose();
         }
         
