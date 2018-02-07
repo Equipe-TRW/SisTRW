@@ -53,7 +53,6 @@ public class controlLogin {
             con.executaSQL("select * from tbl_privilegio where iduser_privilegio='"+mod.getId_user()+"'");
             con.rs.first();
             Menu abreMenu=new Menu();
-            abreMenu.setVisible(true);
             
             int tamanhoVetor=0;
             
@@ -106,6 +105,14 @@ public class controlLogin {
                     } 
                 }              
             }while(con.rs.next());
+            
+             if(mod.getId_user()==0){
+                
+            
+            }else{
+            
+                abreMenu.setVisible(true);
+            }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
