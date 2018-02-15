@@ -581,7 +581,7 @@ public class Clientes extends javax.swing.JFrame {
                 }       
             mod.setRg(cxtRG.getText());
             control.cadastraClientes(mod);
-
+            
             cxtBairro.setText("");
             cxtCPF.setText("");
             cxtCep.setText("");
@@ -597,7 +597,7 @@ public class Clientes extends javax.swing.JFrame {
             cxtgenero.setSelectedItem("<Selecione>");
             cxtEndereco.setText("");
             cxtNum.setText("");
-
+            
             cxtBairro.setEnabled(false);
             cxtCPF.setEnabled(false);
             cxtCep.setEnabled(false);
@@ -745,7 +745,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField cxtEstado;
     private javax.swing.JFormattedTextField cxtFone1;
     private javax.swing.JFormattedTextField cxtFone2;
-    private javax.swing.JTextField cxtNome;
+    public static javax.swing.JTextField cxtNome;
     private javax.swing.JTextField cxtNum;
     private javax.swing.JFormattedTextField cxtRG;
     private javax.swing.JComboBox<String> cxtgenero;

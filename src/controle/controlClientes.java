@@ -7,15 +7,29 @@ package controle;
 
 import db.Conexao;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.modeloClientes;
 
 public class controlClientes {
     Conexao conectaCli=new Conexao();
-    
     public void cadastraClientes(modeloClientes mod){
         conectaCli.conexao();
-            try {
+        
+        try {
+            //PESQUISANDO O NOME DO USUARIONO BANCO
+            PreparedStatement pst2 = conectaCli.conn.prepareStatement("SELECT * FROM tbl_clientes WHERE nome_cli = '"
+                    + mod.getNome_cli() + "'");
+            ResultSet rs=null;
+            rs=pst2.executeQuery();
+            //TESTANDO SE USUARIO JÁ EXISTE
+            if(rs.next()){
+            
+                JOptionPane.showMessageDialog(null, "Usuario Ja Cadastrado!");
+                
+            }else{
+                //CADASTRANDO NOVO USUARIO CASO NAO EXISTA
                 PreparedStatement pst=conectaCli.conn.prepareStatement("insert into tbl_clientes (nome_cli, data_nasc, genero, fone1_cli, fone2_cli, email_cli, rg_cli, cpf_cli, cep, estado_cli, cidade_cli, bairro_cli, endereco_cli, numero_cli)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 pst.setString(1, mod.getNome_cli());
                 pst.setDate(2, mod.getData_nasc());
@@ -33,9 +47,15 @@ public class controlClientes {
                 pst.setInt(14, mod.getNumero());
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso !");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao Cadastrar Cliente !");
+            
             }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi Possivel Cadastrar Usuario!" + ex.getMessage());
+        }
+        
+        /*#############################################################################################*/
+        
         conectaCli.desconecta();
     }
     
