@@ -170,6 +170,11 @@ public class Menu extends javax.swing.JFrame {
         menu_finan.setName("menu_finan"); // NOI18N
 
         jMenuItem12.setText("Contas a Pagar");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         menu_finan.add(jMenuItem12);
 
         jMenuItem13.setText("Contas a Receber");
@@ -288,6 +293,11 @@ public class Menu extends javax.swing.JFrame {
         ConfigEmail abreMail=new ConfigEmail();
         abreMail.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        PesqContasPagar abrePesq=new PesqContasPagar();
+        abrePesq.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
      * @param args the command line arguments
